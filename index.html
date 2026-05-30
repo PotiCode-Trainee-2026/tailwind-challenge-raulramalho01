@@ -1,13 +1,213 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tailwindtemplate</title>
-  </head>
-  <body>
-    <div class="bg-pink-500">oi galera :D</div>
-  </body>
-  <script type="module" src="./src/main.js"></script>
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirusScan - Análise de Arquivos</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#39ff14',       /* Verde Neon */
+                        dark: '#121212',       /* Fundo Principal - Preto */
+                        grayDark: '#1e1e1e',   /* Fundo Secundário - Cinza Escuro */
+                        grayLight: '#2a2a2a'   /* Bordas e Elementos Sutis */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        .neon-text {
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
+        }
+        .neon-border:hover {
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+            border-color: #39ff14;
+        }
+        .neon-button {
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+        }
+        .neon-button:hover {
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-dark text-white font-sans antialiased selection:bg-neon selection:text-black">
+
+    <nav class="fixed w-full z-50 top-0 bg-dark/90 backdrop-blur-md border-b border-grayDark transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <svg class="w-8 h-8 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <span class="text-2xl font-bold tracking-wider">Virus<span class="text-neon neon-text">Scan</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="text-gray-300 hover:text-neon transition-colors duration-300">Início</a>
+                    <a href="#how-it-works" class="text-gray-300 hover:text-neon transition-colors duration-300">Como Funciona</a>
+                    <a href="#features" class="text-gray-300 hover:text-neon transition-colors duration-300">Recursos</a>
+                    <a href="#hero" class="bg-neon text-black font-semibold py-2 px-5 rounded-md hover:bg-white neon-button transition-all duration-300">Analisar Arquivo</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-300 hover:text-neon focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Detecte Ameaças em <br/>
+                <span class="text-neon neon-text">Segundos</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                Envie seu arquivo suspeito e receba um relatório detalhado. Utilizamos a poderosa inteligência da <strong class="text-white">API do VirusTotal</strong> para garantir sua segurança.
+            </p>
+
+            <div class="bg-grayDark p-8 rounded-xl border-2 border-dashed border-grayLight transition-all duration-300 neon-border cursor-pointer flex flex-col items-center justify-center max-w-2xl mx-auto hover:bg-grayDark/80">
+                <svg class="w-16 h-16 text-neon mb-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                <h3 class="text-xl font-semibold mb-2">Arraste e solte o seu arquivo aqui</h3>
+                <p class="text-sm text-gray-400 mb-6">Tamanho máximo permitido: <span class="text-white font-bold">100 MB</span></p>
+                <label class="bg-neon text-black font-bold py-3 px-8 rounded-md cursor-pointer hover:bg-white neon-button transition-all duration-300">
+                    Procurar Arquivo
+                    <input type="file" class="hidden" accept="*/*" />
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-20 bg-grayDark border-y border-grayLight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Como Funciona a <span class="text-neon">Análise</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Um processo simples, rápido e transparente para manter seu ambiente digital livre de malwares.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+                <div class="p-6 transition-transform duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 mx-auto bg-dark rounded-full border border-neon flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                        <span class="text-2xl font-bold text-neon">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Envio do Arquivo</h3>
+                    <p class="text-gray-400">Faça o upload do seu arquivo de até 100MB através da nossa interface segura e criptografada.</p>
+                </div>
+                <div class="p-6 transition-transform duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 mx-auto bg-dark rounded-full border border-neon flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                        <span class="text-2xl font-bold text-neon">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Verificação Múltipla</h3>
+                    <p class="text-gray-400">O arquivo é processado e comparado contra dezenas de motores de antivírus usando a API do VirusTotal.</p>
+                </div>
+                <div class="p-6 transition-transform duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 mx-auto bg-dark rounded-full border border-neon flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(57,255,20,0.2)]">
+                        <span class="text-2xl font-bold text-neon">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Relatório Detalhado</h3>
+                    <p class="text-gray-400">Receba instantaneamente um veredito detalhado mostrando quais ameaças foram detectadas, se houver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Por que escolher o <span class="text-neon">VirusScan?</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-grayDark p-8 rounded-xl border border-grayLight hover:border-neon transition-all duration-300 hover:-translate-y-1 group">
+                    <svg class="w-10 h-10 text-white group-hover:text-neon transition-colors duration-300 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <h3 class="text-xl font-bold mb-3 text-white">Análise em Alta Velocidade</h3>
+                    <p class="text-gray-400 text-sm">Nossa infraestrutura garante que arquivos de até 100MB sejam processados e analisados em questão de segundos.</p>
+                </div>
+                <div class="bg-grayDark p-8 rounded-xl border border-grayLight hover:border-neon transition-all duration-300 hover:-translate-y-1 group">
+                    <svg class="w-10 h-10 text-white group-hover:text-neon transition-colors duration-300 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <h3 class="text-xl font-bold mb-3 text-white">Privacidade e Segurança</h3>
+                    <p class="text-gray-400 text-sm">Seus arquivos não são armazenados após a análise. O ambiente é completamente isolado para garantir sua privacidade.</p>
+                </div>
+                <div class="bg-grayDark p-8 rounded-xl border border-grayLight hover:border-neon transition-all duration-300 hover:-translate-y-1 group">
+                    <svg class="w-10 h-10 text-white group-hover:text-neon transition-colors duration-300 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                    <h3 class="text-xl font-bold mb-3 text-white">Powered by VirusTotal API</h3>
+                    <p class="text-gray-400 text-sm">Aproveitamos o banco de dados global do VirusTotal, reunindo mais de 70 mecanismos de verificação simultâneos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-neon text-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Milhares de novas ameaças surgem todos os dias.</h2>
+                    <p class="text-black/80 font-medium text-lg">Não confie em arquivos baixados de fontes desconhecidas. Faça a análise prévia antes de executar qualquer script, instalador ou documento suspeito.</p>
+                </div>
+                <div class="md:w-1/2 flex flex-col sm:flex-row gap-6">
+                    <div class="bg-black/10 p-6 rounded-lg text-center flex-1 border border-black/20">
+                        <h4 class="text-4xl font-black mb-2">100<span class="text-xl">MB</span></h4>
+                        <p class="font-semibold text-sm uppercase tracking-wide">Limite de Arquivo</p>
+                    </div>
+                    <div class="bg-black/10 p-6 rounded-lg text-center flex-1 border border-black/20">
+                        <h4 class="text-4xl font-black mb-2">70+</h4>
+                        <p class="font-semibold text-sm uppercase tracking-wide">Motores Antivírus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark border-t border-grayDark pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <svg class="w-6 h-6 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span class="text-xl font-bold tracking-wider">Virus<span class="text-neon">Scan</span></span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Sua primeira linha de defesa contra malwares. Análise gratuita de arquivos via API do VirusTotal.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Navegação</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="text-gray-400 hover:text-neon transition-colors text-sm">Início</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-neon transition-colors text-sm">Como Funciona</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-neon transition-colors text-sm">Recursos API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-neon transition-colors text-sm">Termos de Serviço</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-neon transition-colors text-sm">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-neon transition-colors text-sm">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-grayDark pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2026 VirusScan. Todos os direitos reservados.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-neon transition-colors">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>
